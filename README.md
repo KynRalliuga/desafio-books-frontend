@@ -57,6 +57,6 @@ Você deverá construir um projeto utilizando o layout proposto
 - A documentação da API está disponível a partir de uma página web (https://books.ioasys.com.br/api/docs/).
 
 - **Documentação:** https://books.ioasys.com.br/api/docs/
-- **Servidor:** http://books.ioasys.com.br/api/v1
+- **Servidor:** https://books.ioasys.com.br/api/v1
 - **Usuário de Teste:** desafio@ioasys.com.br
 - **Senha de Teste:** 12341234
