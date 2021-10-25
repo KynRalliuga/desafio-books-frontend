@@ -11,7 +11,6 @@ Estes documento README tem como objetivo fornecer as informações necessárias 
 - Seu projeto deverá ser construído utilizando **ReactJS** ou **Angular**.
 - Seu projeto deverá ser construído utilizando o layout disponibilizado na descrição do teste.
 - A integração com a API deve ser feita respeitando todos os contratos de OAuth.
-- Projetos utilizando **ReactJS** serão aceitos testes somente em **JavaScript** buscando avaliar o entendimento completo da linguagem e não de estruturas ou dependências que abstraiam determinadas definições não alheias ao ECMAScript.
 
 # 🕵🏻‍♂️ Itens a serem avaliados
 
