@@ -1,3 +1,18 @@
+# Setup utilizado no projeto
+
+- Windows 11;
+- nvm 1.1.9;
+- Node 17.8.0;
+- npm 8.5.5;
+
+# Rodando o Projeto
+
+Você deve rodar os seguintes comandos para rodar o projeto localmente:
+
+- npm install;
+- npm lint;
+- npm run dev;
+
 # Sobre
 
 Estes documento README tem como objetivo fornecer as informações necessárias para realização do projeto **ioasys books**.
