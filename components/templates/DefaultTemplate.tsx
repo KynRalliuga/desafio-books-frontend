@@ -19,7 +19,7 @@ const DefaultTemplate: NextPage<defaultTemplateInterface> = (props) => {
         />
       </Head>
 
-      <main>{children}</main>
+      {children}
     </div>
   );
 };
