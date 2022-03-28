@@ -7,7 +7,7 @@ const initialState: User = {
   name: "",
   email: "",
   password: "",
-  timeToRefresh: 6000,
+  timeToRefresh: 3600,
   requiredFieldsErrors: {
     email: "",
     password: "",

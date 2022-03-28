@@ -12,7 +12,7 @@ export interface User {
   email: string;
   password: string;
   requiredFieldsErrors: RequiredFieldsErrors;
-  timeToRefresh: 6000;
+  timeToRefresh: 3600;
 }
 
 export interface EmailOnChange extends Action {

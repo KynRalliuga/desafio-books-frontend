@@ -1,4 +1,4 @@
-import type { NextPage } from "next";
+import type { GetServerSidePropsContext, NextPage } from "next";
 import Image from "next/image";
 import { Dispatch, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -8,6 +8,17 @@ import DefaultTemplate from "../components/templates/DefaultTemplate";
 import { UserAction } from "../store/api/login/types";
 import { RootReducerState } from "../store/types";
 import styles from "../styles/Home.module.css";
+
+export async function getServerSideProps(context: GetServerSidePropsContext) {
+  context.res.setHeader(
+    "Cache-Control",
+    "public, s-maxage=300, stale-while-revalidate"
+  );
+
+  return {
+    props: {},
+  };
+}
 
 const Login: NextPage = () => {
   const dispatch: Dispatch<UserAction> = useDispatch();

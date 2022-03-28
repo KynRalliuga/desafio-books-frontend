@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
-import React, { Dispatch, useEffect, useState } from "react";
+import React, { Dispatch, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Book, BooksAction } from "../../store/api/books/types";
 import { UserAction } from "../../store/api/login/types";
@@ -26,8 +26,6 @@ const BooksPagination: React.FC = () => {
   const books: Book[] = useSelector(
     (state: RootReducerState) => state.apiBooks.data
   );
-
-  const [show404, setShow404] = useState(false);
 
   const id = typeof router.query.id === "string" ? router.query.id : "0";
 
@@ -60,6 +58,14 @@ const BooksPagination: React.FC = () => {
           <BookCard isSkeleton key={`book-${idx}`} />
         ));
 
+  const show404 = () => {
+    return (
+      typeof router.query.page === "string" &&
+      parseInt(router.query.page) >= 1 &&
+      parseInt(router.query.page) > totalPages
+    );
+  };
+
   useEffect(() => {
     if (!isLoading && id === "0") {
       loadBooks(dispatch, page.toString());
@@ -67,20 +73,12 @@ const BooksPagination: React.FC = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [page]);
 
-  useEffect(() => {
-    setShow404(
-      typeof router.query.page === "string" &&
-        parseInt(router.query.page) > totalPages
-    );
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [page, totalPages]);
-
   return (
     <div className="overflow-auto">
       <div className="grid xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 gird-cols-1 gap-4">
-        {!show404 && allBooks}
+        {!show404() && allBooks}
       </div>
-      {show404 && (
+      {show404() && (
         <div>
           <h2 className="text-2xl text-center">
             Não existem livros nessa página.{" "}
