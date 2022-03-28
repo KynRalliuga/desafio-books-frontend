@@ -6,12 +6,13 @@ import {
   ClearListBooks,
   StartLoading,
   EndLoading,
+  ToggleModal,
 } from "./types";
 
 export const setListBooks = (): SetListBooks => ({
   type: "setListBooks",
   data: [],
-  selectedBook: null,
+  selectedBook: undefined,
   page: 1,
   totalPages: 1,
   totalItems: 0,
@@ -52,4 +53,8 @@ export const startLoading = (): StartLoading => ({
 
 export const endLoading = (): EndLoading => ({
   type: "endLoading",
+});
+
+export const toggleModal = (): ToggleModal => ({
+  type: "toggleModal",
 });

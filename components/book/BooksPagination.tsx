@@ -6,6 +6,7 @@ import { Book, BooksAction } from "../../store/api/books/types";
 import { UserAction } from "../../store/api/login/types";
 import { RootReducerState } from "../../store/types";
 import BookCard from "./BookCard";
+import BookInfo from "./BookInfo";
 import Pagination from "./Pagination";
 import { loadBooks } from "./services";
 
@@ -15,6 +16,9 @@ const BooksPagination: React.FC = () => {
 
   const isLoading = useSelector(
     (state: RootReducerState) => state.apiBooks.isLoading
+  );
+  const pageState = useSelector(
+    (state: RootReducerState) => state.apiBooks.page
   );
   const totalPages = useSelector(
     (state: RootReducerState) => state.apiBooks.totalPages
@@ -30,25 +34,26 @@ const BooksPagination: React.FC = () => {
     parseInt(router.query.page) >= 1 &&
     parseInt(router.query.page) <= totalPages
       ? parseInt(router.query.page)
-      : totalPages;
+      : pageState;
 
   const allBooks =
     books.length > 0
-      ? books.map((value, idx) => {
-          const author = value.authors.length > 0 ? value.authors[0] : "";
-          return (
-            <BookCard
-              isSkeleton={false}
-              image={value.imageUrl}
-              title={value.title}
-              author={author}
-              pageCount={value.pageCount}
-              publisher={value.publisher}
-              published={value.published}
-              key={`book-${idx}`}
-            />
-          );
-        })
+      ? books.map((value, idx) => (
+          <BookCard
+            isSkeleton={false}
+            image={value.imageUrl}
+            title={value.title}
+            author={value.authors.join(", ")}
+            pageCount={value.pageCount}
+            publisher={value.publisher}
+            published={value.published}
+            key={`book-${idx}`}
+            onClick={() => {
+              dispatch({ type: "toggleModal" });
+              router.push(`/books/${value.id}`);
+            }}
+          />
+        ))
       : Array.from({ length: 12 }, (value, idx) => (
           <BookCard isSkeleton key={`book-${idx}`} />
         ));
@@ -67,7 +72,7 @@ const BooksPagination: React.FC = () => {
   }, [page, totalPages]);
 
   return (
-    <>
+    <div className="overflow-auto">
       <div className="grid xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 gird-cols-1 gap-4">
         {!show404 && allBooks}
       </div>
@@ -99,7 +104,8 @@ const BooksPagination: React.FC = () => {
           }}
         />
       </div>
-    </>
+      <BookInfo />
+    </div>
   );
 };
 

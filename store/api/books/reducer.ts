@@ -3,11 +3,12 @@ import { ListBooks, BooksAction } from "./types";
 
 const initialState: ListBooks = {
   data: [],
-  selectedBook: null,
+  selectedBook: undefined,
   page: 1,
   totalPages: 1,
   totalItems: 0,
   isLoading: false,
+  showModal: false,
 };
 
 const reducer = (state = initialState, action: BooksAction): ListBooks => {
@@ -78,11 +79,15 @@ const reducer = (state = initialState, action: BooksAction): ListBooks => {
       return produce(state, (draft) => {
         draft.isLoading = true;
         draft.data = [];
-        draft.selectedBook = null;
+        draft.selectedBook = undefined;
       });
     case "endLoading":
       return produce(state, (draft) => {
         draft.isLoading = false;
+      });
+    case "toggleModal":
+      return produce(state, (draft) => {
+        draft.showModal = !draft.showModal;
       });
     default:
       return state;

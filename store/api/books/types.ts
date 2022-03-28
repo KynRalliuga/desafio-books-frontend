@@ -17,11 +17,12 @@ export interface Book {
 
 export interface ListBooks {
   data: Book[];
-  selectedBook?: Book | null;
+  selectedBook?: Book | undefined;
   page: number;
   totalPages: number;
   totalItems: number;
   isLoading?: boolean;
+  showModal?: boolean;
 }
 
 export interface ResponseListBooksApi extends ListBooks {
@@ -59,6 +60,9 @@ export interface StartLoading extends Action {
 export interface EndLoading extends Action {
   type: "endLoading";
 }
+export interface ToggleModal extends Action {
+  type: "toggleModal";
+}
 
 export type BooksAction =
   | SetListBooks
@@ -67,4 +71,5 @@ export type BooksAction =
   | ClearBook
   | ChangePage
   | StartLoading
-  | EndLoading;
+  | EndLoading
+  | ToggleModal;

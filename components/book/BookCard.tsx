@@ -11,11 +11,20 @@ interface bookCardInterface {
   pageCount?: number;
   publisher?: string;
   published?: number;
+  onClick?: (event: React.FormEvent<HTMLButtonElement>) => void;
 }
 
 const BookCard: React.FC<bookCardInterface> = (props) => {
-  const { isSkeleton, image, title, author, pageCount, publisher, published } =
-    props;
+  const {
+    isSkeleton,
+    image,
+    title,
+    author,
+    pageCount,
+    publisher,
+    published,
+    onClick,
+  } = props;
 
   const imageEl =
     image && !isSkeleton ? (
@@ -100,12 +109,12 @@ const BookCard: React.FC<bookCardInterface> = (props) => {
     );
 
   return (
-    <>
+    <button onClick={onClick}>
       <div
         className={`bg-white flex items-center p-4 h-40 w-full overflow-hidden ${styles.bookCardShadow}`}
       >
         <div className={styles.bookCardImage}>{imageEl}</div>
-        <div className="pl-4 w-full">
+        <div className="pl-4 w-full h-full overflow-auto">
           {titleEl}
           {authorEl}
           {pageCountEl}
@@ -113,7 +122,7 @@ const BookCard: React.FC<bookCardInterface> = (props) => {
           {publishedEl}
         </div>
       </div>
-    </>
+    </button>
   );
 };
 
