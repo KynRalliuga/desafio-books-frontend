@@ -13,6 +13,18 @@
 
 .bookCardImage {
   width: 80px;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.bookCardImage div {
+  box-shadow: 0px 12px 18px 0px rgba(0, 0, 0, 0.3);
+  max-height: 80%;
+}
+
+.bookCardImage span {
   box-shadow: 0px 6px 9px 0px rgba(0, 0, 0, 0.15);
 }
 
@@ -35,7 +47,19 @@
 }
 
 .bookModalImage {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bookModalImage div {
   box-shadow: 0px 12px 18px 0px rgba(0, 0, 0, 0.3);
+  max-height: 80%;
+}
+
+.bookModalImage span {
+  box-shadow: 0px 12px 18px 0px rgba(0, 0, 0, 0.3);
+  max-height: 80%;
 }
 .bookModalImage img {
   object-fit: cover !important;

@@ -28,6 +28,7 @@ export async function loadBooks(
   })}`;
 
   dispatch({ type: "startLoading" });
+  dispatch({ type: "clearListBooks" });
 
   const response = await fetch(urlApiBooksQuery, optionsFetch);
   if (response.status === 200) {
@@ -69,6 +70,7 @@ export async function loadBook(
 
   const urlApiBooksQuery = `${urlApi.books}/${id}`;
 
+  dispatch({ type: "startLoading" });
   dispatch({ type: "clearBook" });
 
   const response = await fetch(urlApiBooksQuery, optionsFetch);
@@ -84,6 +86,7 @@ export async function loadBook(
         password: "",
       },
     });
+    dispatch({ type: "clearBook" });
   } else {
     dispatch({ type: "clearBook" });
   }

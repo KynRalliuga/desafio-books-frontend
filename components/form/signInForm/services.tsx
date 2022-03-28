@@ -6,6 +6,7 @@ import {
 } from "../../../store/api/login/types";
 import { urlApi } from "../../../store/api/variables";
 import { getAuthHeader, isValidEmail } from "../../helpers";
+import { BooksAction } from "../../../store/api/books/types";
 
 export async function checkLoggedIn(
   dispatch: Dispatch<UserAction>,
@@ -176,7 +177,8 @@ export async function onClickSignIn(
   }
 }
 
-export function logOut(dispatch: Dispatch<UserAction>) {
+export function logOut(dispatch: Dispatch<UserAction | BooksAction>) {
   dispatch({ type: "userLogout" });
+  dispatch({ type: "clearListBooks" });
   Router.push("/");
 }

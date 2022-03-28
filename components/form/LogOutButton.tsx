@@ -1,6 +1,7 @@
 import { LogoutIcon } from "@heroicons/react/outline";
 import React, { Dispatch } from "react";
 import { useDispatch } from "react-redux";
+import { BooksAction } from "../../store/api/books/types";
 import { UserAction } from "../../store/api/login/types";
 import { logOut } from "./signInForm/services";
 
@@ -9,7 +10,7 @@ interface logOutButtonInterface {
 }
 
 const LogOutButton: React.FC<logOutButtonInterface> = (props) => {
-  const dispatch: Dispatch<UserAction> = useDispatch();
+  const dispatch: Dispatch<UserAction | BooksAction> = useDispatch();
   const { className } = props;
 
   return (

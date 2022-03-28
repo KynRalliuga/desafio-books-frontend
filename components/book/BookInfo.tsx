@@ -17,6 +17,7 @@ const BookInfo: React.FC = () => {
   const showModal = useSelector(
     (state: RootReducerState) => state.apiBooks.showModal
   );
+  const page = useSelector((state: RootReducerState) => state.apiBooks.page);
   const selectedBook = useSelector(
     (state: RootReducerState) => state.apiBooks.selectedBook
   );
@@ -40,6 +41,8 @@ const BookInfo: React.FC = () => {
       showModal={showModal ?? false}
       onClickClose={() => {
         dispatch({ type: "toggleModal" });
+        dispatch({ type: "clearBook" });
+        router.push(`/books/page/${page}`);
       }}
     >
       <BookInfoModal

@@ -29,6 +29,8 @@ const BooksPagination: React.FC = () => {
 
   const [show404, setShow404] = useState(false);
 
+  const id = typeof router.query.id === "string" ? router.query.id : "0";
+
   const page =
     typeof router.query.page === "string" &&
     parseInt(router.query.page) >= 1 &&
@@ -59,7 +61,9 @@ const BooksPagination: React.FC = () => {
         ));
 
   useEffect(() => {
-    loadBooks(dispatch, page.toString());
+    if (!isLoading && id === "0") {
+      loadBooks(dispatch, page.toString());
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [page]);
 
@@ -91,15 +95,21 @@ const BooksPagination: React.FC = () => {
           page={page}
           totalPages={totalPages}
           onClickLeftButton={() => {
-            dispatch({ type: "changePage", changeType: "-" });
             if (!isLoading) {
+              dispatch({ type: "changePage", changeType: "-" });
               router.push(`/books/page/${page - 1}`);
+              document
+                .getElementById("header-books")
+                ?.scrollIntoView({ block: "end", behavior: "smooth" });
             }
           }}
           onClickRightButton={() => {
             dispatch({ type: "changePage", changeType: "+" });
             if (!isLoading) {
               router.push(`/books/page/${page + 1}`);
+              document
+                .getElementById("header-books")
+                ?.scrollIntoView({ block: "end", behavior: "smooth" });
             }
           }}
         />

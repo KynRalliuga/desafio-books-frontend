@@ -219,7 +219,7 @@ const BookInfoModal: React.FC<bookInfoModalInterface> = (props) => {
 
   return (
     <>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-6 h-full overflow-auto">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-6 h-full overflow-auto md:overflow-visible">
         <div className={styles.bookModalImage}>{imageEl}</div>
         <div className="description-book-modal">
           {titleEl}

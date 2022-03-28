@@ -40,15 +40,11 @@ const reducer = (state = initialState, action: BooksAction): ListBooks => {
       });
     case "clearBook":
       return produce(state, (draft) => {
-        draft.selectedBook = initialState.selectedBook;
+        draft.selectedBook = undefined;
       });
     case "clearListBooks":
       return produce(state, (draft) => {
-        draft.data = initialState.data;
-        draft.selectedBook = initialState.selectedBook;
-        draft.page = initialState.page;
-        draft.totalPages = initialState.totalPages;
-        draft.totalItems = initialState.totalItems;
+        draft.data = [];
       });
     case "changePage":
       return produce(state, (draft) => {
@@ -73,13 +69,10 @@ const reducer = (state = initialState, action: BooksAction): ListBooks => {
         ) {
           draft.page = action.pageNumber;
         }
-        draft.isLoading = true;
       });
     case "startLoading":
       return produce(state, (draft) => {
         draft.isLoading = true;
-        draft.data = [];
-        draft.selectedBook = undefined;
       });
     case "endLoading":
       return produce(state, (draft) => {

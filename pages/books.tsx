@@ -31,7 +31,10 @@ const Books: NextPage = () => {
       <main className={styles.main}>
         <div className="container pt-10">
           <div className="grid grid-cols-1 sm:grid-cols-2 relative">
-            <h2 className="text-3xl font-light flex items-center">
+            <h2
+              className="text-3xl font-light flex items-center"
+              id="header-books"
+            >
               <Image
                 src="/black-logo-ioasys.png"
                 alt="ioasys Logo"
