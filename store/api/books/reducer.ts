@@ -7,6 +7,7 @@ const initialState: ListBooks = {
   page: 1,
   totalPages: 1,
   totalItems: 0,
+  isLoading: false,
 };
 
 const reducer = (state = initialState, action: BooksAction): ListBooks => {
@@ -50,18 +51,38 @@ const reducer = (state = initialState, action: BooksAction): ListBooks => {
       });
     case "changePage":
       return produce(state, (draft) => {
-        if (action.changeType === "+" && draft.page < draft.totalPages) {
+        if (
+          action.changeType === "+" &&
+          draft.page < draft.totalPages &&
+          !draft.isLoading
+        ) {
           draft.page++;
-        } else if (action.changeType === "-" && draft.page > 1) {
+        } else if (
+          action.changeType === "-" &&
+          draft.page > 1 &&
+          !draft.isLoading
+        ) {
           draft.page--;
         } else if (
           action.changeType === "n" &&
           action.pageNumber &&
           action.pageNumber >= 1 &&
-          action.pageNumber <= draft.totalPages
+          action.pageNumber <= draft.totalPages &&
+          !draft.isLoading
         ) {
           draft.page = action.pageNumber;
         }
+        draft.isLoading = true;
+      });
+    case "startLoading":
+      return produce(state, (draft) => {
+        draft.isLoading = true;
+        draft.data = [];
+        draft.selectedBook = null;
+      });
+    case "endLoading":
+      return produce(state, (draft) => {
+        draft.isLoading = false;
       });
     default:
       return state;

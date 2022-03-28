@@ -17,10 +17,11 @@ export interface Book {
 
 export interface ListBooks {
   data: Book[];
-  selectedBook: Book | null;
+  selectedBook?: Book | null;
   page: number;
   totalPages: number;
   totalItems: number;
+  isLoading?: boolean;
 }
 
 export interface ResponseListBooksApi extends ListBooks {
@@ -52,10 +53,18 @@ export interface ChangePage extends Action {
   changeType: "+" | "-" | "n";
   pageNumber?: number;
 }
+export interface StartLoading extends Action {
+  type: "startLoading";
+}
+export interface EndLoading extends Action {
+  type: "endLoading";
+}
 
 export type BooksAction =
   | SetListBooks
   | SetBook
   | ClearListBooks
   | ClearBook
-  | ChangePage;
+  | ChangePage
+  | StartLoading
+  | EndLoading;

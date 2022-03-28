@@ -4,6 +4,8 @@ import {
   ChangePage,
   ClearBook,
   ClearListBooks,
+  StartLoading,
+  EndLoading,
 } from "./types";
 
 export const setListBooks = (): SetListBooks => ({
@@ -42,4 +44,12 @@ export const clearBook = (): ClearBook => ({
 export const changePage = (): ChangePage => ({
   type: "changePage",
   changeType: "+",
+});
+
+export const startLoading = (): StartLoading => ({
+  type: "startLoading",
+});
+
+export const endLoading = (): EndLoading => ({
+  type: "endLoading",
 });
