@@ -6,3 +6,17 @@
   height: 100vh;
   overflow: auto;
 }
+
+.bookCardShadow {
+  box-shadow: 0px 6px 24px 0px rgba(84, 16, 95, 0.13);
+}
+
+.bookCardImage {
+  width: 80px;
+}
+
+.bookCardImage img {
+  object-fit: cover !important;
+  object-position: center !important;
+  box-shadow: 0px 6px 9px 0px rgba(0, 0, 0, 0.15);
+}

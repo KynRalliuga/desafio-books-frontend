@@ -1,10 +1,5 @@
 import { Action } from "redux";
 
-export interface CredentialsUserProperties {
-  email: string;
-  password: string;
-}
-
 export interface RequiredFieldsErrors {
   email: "" | "Email inválido";
   password: "" | "Senha deve ter no mínimo 6 caracteres";

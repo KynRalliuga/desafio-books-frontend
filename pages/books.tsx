@@ -2,12 +2,13 @@ import type { NextPage } from "next";
 import Image from "next/image";
 import { Dispatch, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { checkLoggedIn, logOut } from "../components/form/signInForm/services";
+import { checkLoggedIn } from "../components/form/signInForm/services";
 import DefaultTemplate from "../components/templates/DefaultTemplate";
 import { UserAction } from "../store/api/login/types";
 import { RootReducerState } from "../store/types";
-import { LogoutIcon } from "@heroicons/react/outline";
 import styles from "../styles/Books.module.css";
+import LogOutButton from "../components/form/LogOutButton";
+import BooksPagination from "../components/book/BooksPagination";
 
 const Books: NextPage = () => {
   const dispatch: Dispatch<UserAction> = useDispatch();
@@ -18,7 +19,7 @@ const Books: NextPage = () => {
   );
 
   useEffect(() => {
-    checkLoggedIn(dispatch, timeToRefresh);
+    checkLoggedIn(dispatch, timeToRefresh, name);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -29,8 +30,8 @@ const Books: NextPage = () => {
     >
       <main className={styles.main}>
         <div className="container pt-10">
-          <div className="grid grid-cols-2">
-            <h2 className="text-3xl font-light flex">
+          <div className="grid grid-cols-1 sm:grid-cols-2 relative">
+            <h2 className="text-3xl font-light flex items-center">
               <Image
                 src="/black-logo-ioasys.png"
                 alt="ioasys Logo"
@@ -38,18 +39,16 @@ const Books: NextPage = () => {
                 height="36"
               />
               <span className="pl-4">Books</span>
+              <LogOutButton className="absolute right-0 inline-block sm:hidden" />
             </h2>
-            <div className="flex justify-end items-center">
+            <div className="hidden sm:flex justify-end items-center">
               <span>Bem vindo, {name}</span>
-              <button
-                className="rounded-full w-8 h-8 p-1 ml-4 border border-[#333333]/[0.2]"
-                onClick={() => {
-                  logOut(dispatch);
-                }}
-              >
-                <LogoutIcon />
-              </button>
+              <LogOutButton />
             </div>
+          </div>
+
+          <div className="pt-10">
+            <BooksPagination />
           </div>
         </div>
       </main>

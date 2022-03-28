@@ -10,6 +10,7 @@ import { getAuthHeader, isValidEmail } from "../../helpers";
 export async function checkLoggedIn(
   dispatch: Dispatch<UserAction>,
   timeToRefresh: number,
+  name: string,
   isProtectedPage = true,
   sendTo = "/"
 ) {
@@ -42,8 +43,6 @@ export async function checkLoggedIn(
     const response = await fetch(urlApi.refreshToken, optionsFetch);
 
     if (response.status === 204) {
-      const data: ResponseAuthenticationApi = await response.json();
-
       const tokenHeader = getAuthHeader(response);
       const refreshTokenHeader = getAuthHeader(response, "refresh-token");
 
@@ -52,7 +51,7 @@ export async function checkLoggedIn(
         returnMsg: "",
         token: tokenHeader,
         refreshToken: refreshTokenHeader,
-        name: data.name,
+        name,
       });
 
       if (!isProtectedPage) {

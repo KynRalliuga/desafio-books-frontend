@@ -15,9 +15,10 @@ const Login: NextPage = () => {
   const timeToRefresh = useSelector(
     (state: RootReducerState) => state.apiLogin.timeToRefresh
   );
+  const name = useSelector((state: RootReducerState) => state.apiLogin.name);
 
   useEffect(() => {
-    checkLoggedIn(dispatch, timeToRefresh, false, "/books");
+    checkLoggedIn(dispatch, timeToRefresh, name, false, "/books");
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
